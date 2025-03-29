@@ -273,6 +273,35 @@ Método CalcularConsumo():
 ```
 Implementação genérica para cálculo de consumo, a ser sobrescrita pelas subclasses.
 Agora, implemente as classes Carro e Moto, garantindo que ambas herdem de Veiculo e possuam métodos específicos para calcular o consumo de combustível com base na quilometragem e eficiência do veículo.
+
+**Resposta**
+        
+        
+        Classe Carro herda Veiculo:
+      Atributos:
+        eficienciaCarro  # em km/litro
+
+    Método Construtor(modelo, ano, eficienciaCarro):
+        Chamar Veiculo.Construtor(modelo, ano)
+        this.eficienciaCarro ← eficienciaCarro
+
+    Método CalcularConsumo(quilometragem):
+        consumo ← quilometragem / this.eficienciaCarro
+        Retornar consumo
+
+
+        Classe Moto herda Veiculo:
+    Atributos:
+        eficienciaMoto  # em km/litro
+
+    Método Construtor(modelo, ano, eficienciaMoto):
+        Chamar Veiculo.Construtor(modelo, ano)
+        this.eficienciaMoto ← eficienciaMoto
+
+    Método CalcularConsumo(quilometragem):
+        consumo ← quilometragem / this.eficienciaMoto
+        Retornar consumo
+
 ______
 
 **9)** Você é um cientista da NASA e está ajudando no desenvolvimento de um sistema de pouso para sondas espaciais em Marte. Seu objetivo é calcular o tempo necessário para que a sonda reduza sua velocidade até um nível seguro para pouso, considerando uma velocidade inicial de entrada na atmosfera marciana e uma taxa de desaceleração constante causada pelo atrito atmosférico e retrofoguetes.
@@ -286,6 +315,28 @@ Considere a fórumla de atualização velocidade:
     velocidade = velocidadeInicial - desaceleracao * tempo
 ```
 Seu programa deve determinar quanto tempo será necessário para que a sonda atinja uma velocidade segura de pouso, sem ultrapassar os limites estabelecidos.
+
+
+**Resposta**
+
+    Função SimularPouso(velocidadeInicial, velocidadeSegura, desaceleracao, desaceleracaoMinima, tempoMaximo):
+
+    # Verifica se a desaceleração está dentro do limite mínimo
+    Se desaceleracao < desaceleracaoMinima então:
+        Retornar "Erro: A desaceleração está abaixo do limite mínimo. Pouso instável."
+
+    tempo ← 0
+
+    Enquanto tempo ≤ tempoMaximo faça:
+        velocidade ← velocidadeInicial - desaceleracao * tempo
+
+        Se velocidade ≤ velocidadeSegura então:
+            Retornar "Tempo necessário para pouso seguro: " + tempo + " segundos"
+
+        tempo ← tempo + 1
+
+    Retornar "Falha: Velocidade segura não atingida dentro do tempo máximo permitido."
+
 ______
 
 **10)** Em um sistema de análise financeira, as operações de investimento de uma empresa podem ser representadas por matrizes, onde cada linha representa um tipo de investimento e cada coluna representa um período de tempo.
@@ -318,3 +369,31 @@ Escrever("Total de investimentos acumulados:")
 ImprimirMatriz(totalInvestimentos)  
 ```
 Agora, implemente a função MultiplicarMatrizesInvestimento(matrizA, matrizB), que multiplica as duas matrizes, simulando o efeito de diferentes fatores de crescimento e impacto financeiro nos investimentos ao longo do tempo.
+
+**Resposta**
+
+    Função MultiplicarMatrizesInvestimento(matrizA, matrizB):
+    # Verifica se as matrizes podem ser multiplicadas
+    Se tamanho(matrizA[0]) ≠ tamanho(matrizB) então:
+        Retornar "As matrizes não podem ser multiplicadas. Dimensões incompatíveis."
+
+    linhasA ← tamanho(matrizA)
+    colunasA ← tamanho(matrizA[0])
+    colunasB ← tamanho(matrizB[0])
+
+    # Cria matriz resultado com dimensões [linhasA x colunasB]
+    matrizResultado ← novaMatriz(linhasA, colunasB)
+
+    Para i de 0 até linhasA - 1 faça:
+        Para j de 0 até colunasB - 1 faça:
+            soma ← 0
+            Para k de 0 até colunasA - 1 faça:
+                soma ← soma + (matrizA[i][k] * matrizB[k][j])
+            matrizResultado[i][j] ← soma
+
+    Retornar matrizResultado
+
+
+
+
+
